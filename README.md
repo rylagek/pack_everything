@@ -36,3 +36,38 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 - Windows 7
 - Windows XP
 - Windows Server 2k12
+
+
+## File Structure
+├───nix
+│   ├───Arch
+│   ├───busybox
+│   ├───Debian 11
+│   ├───FreeBSD
+│   ├───Gentoo
+│   ├───Kali Linux
+│   ├───OpenBSD
+│   ├───Oracle Solaris
+│   ├───Parrot
+│   ├───Pentoo
+│   ├───pfSense Router
+│   ├───PureOS
+│   ├───Qubes OS
+│   ├───Raspberry Pi OS
+│   ├───REMNUX
+│   ├───Rocky Linux
+│   ├───Security Onion
+│   ├───SIFT
+│   ├───TAILS
+│   ├───TrueNAS
+│   ├───Ubuntu 16.04 Desktop
+│   ├───Ubuntu 16.04 Server
+│   ├───Ubuntu 20.04 Desktop
+│   └───Ubuntu 20.04 Server
+└───windows
+    ├───Windows 10
+    ├───Windows 7
+    ├───Windows Server 2k12
+    ├───Windows Server 2k19
+    ├───Windows Vista
+    └───Windows XP
