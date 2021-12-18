@@ -39,6 +39,7 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 
 
 ## File Structure
+```
 ├───nix
 │   ├───Arch
 │   ├───busybox
@@ -71,3 +72,4 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
     ├───Windows Server 2k19
     ├───Windows Vista
     └───Windows XP
+```
