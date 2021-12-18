@@ -3,43 +3,51 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 
 ## OS List
 ### \*Nix in Order of Priority
-- Ubuntu 20.04 Desktop
-- Ubuntu 20.04 Server
-- Rocky Linux
-- Kali Linux
-- TrueNAS
-- Security Onion
-- SIFT
-- pfSense Router
-- Arch
-- FreeBSD
-- busybox
-- Oracle Solaris
-- Raspberry Pi OS
-- TAILS
-- Ubuntu 16.04 Desktop
-- Ubuntu 16.04 Server
-- REMNUX
-- Qubes OS
-- OpenBSD
-- Parrot
-- PureOS
-- Gentoo
-- Pentoo
-- Debian 11
+1) Ubuntu 20.04 Desktop
+2) Ubuntu 20.04 Server
+3) Rocky Linux
+4) Kali Linux
+5) TrueNAS
+6) Security Onion
+7) SIFT
+8) pfSense Router
+9) Arch
+10) FreeBSD
+11) busybox
+12) Oracle Solaris
+13) Raspberry Pi OS
+14) TAILS
+15) Ubuntu 16.04 Desktop
+16) Ubuntu 16.04 Server
+17) REMNUX
+18) Qubes OS
+19) OpenBSD
+20) Parrot
+21) PureOS
+22) Gentoo
+23) Pentoo
+24) Debian 11
 
 
 ### Windows in Order of Priority
-- Windows 10
-- Windows Server 2k19
-- Windows Vista
-- Windows 7
-- Windows XP
-- Windows Server 2k12
+1) Windows 10
+2) Windows Server 2k19
+3) Windows Vista
+4) Windows 7
+5) Windows XP
+6) Windows Server 2k12
 
 
 ## File Structure
+#### `builders` holds example source and builder `pkr.hcl` blocks for each build type
+
+#### `nix` and `windows` each hold the packer files required for successful builds
 ```
+├───builders
+│   ├───vagrant
+│   ├───vbox
+│   ├───vmWare
+│   └───vSphere
 ├───nix
 │   ├───Arch
 │   ├───busybox
