@@ -10,7 +10,7 @@ variable "iso_url" {
 
 source "virtualbox-iso" "vbox" {
   boot_command            = ["<esc><wait>", "install <wait>", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ", "locale=en_US ", "keymap=us ", "hostname=ubuntu ", "domain='' ", "<enter>"]
-  boot_wait               = "600s"
+  boot_wait               = "300s"
   cpus                    = "2"
   guest_additions_mode    = "disable"
   guest_os_type           = "Ubuntu_64"
@@ -19,8 +19,9 @@ source "virtualbox-iso" "vbox" {
   iso_url                 = "http://releases.ubuntu.com/20.04/ubuntu-20.04.3-live-server-amd64.iso"
   memory                  = "2048"
   shutdown_command        = "echo 'packer' | sudo -S shutdown -P now"
-  ssh_password            = "vbox"
-  ssh_username            = "vbox"
+  ssh_password            = "packer"
+  ssh_username            = "packer"
+  ssh_timeout             = "40m"
   vboxmanage              = [["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"], ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"]]
   virtualbox_version_file = ""
 }
