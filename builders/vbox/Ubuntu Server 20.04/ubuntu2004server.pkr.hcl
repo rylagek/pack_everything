@@ -10,7 +10,7 @@ variable "iso_url" {
 
 source "virtualbox-iso" "vbox" {
   boot_command            = ["<esc><wait>", "install <wait>", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ", "locale=en_US ", "keymap=us ", "hostname=ubuntu ", "domain='' ", "<enter>"]
-  boot_wait = "600s"
+  boot_wait               = "600s"
   cpus                    = "2"
   guest_additions_mode    = "disable"
   guest_os_type           = "Ubuntu_64"
