@@ -1,12 +1,12 @@
 
 variable "iso_checksum" {
   type    = string
-  default = "7F6538F0EB33C30F0A5CBBF2F39973D4C8DEA0D64F69BD18E406012F17A8234F"
+  default = ""
 }
 
 variable "iso_url" {
   type    = string
-  default = "C:/Users/reyna/packer_Test/VBOX/ISO Holder/Win10_21H2_English_x64.iso"
+  default = "C:/Your/File/Path/File.iso"
 }
 
 source "virtualbox-iso" "vbox" {
