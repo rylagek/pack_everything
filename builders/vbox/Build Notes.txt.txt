@@ -53,3 +53,7 @@ FreeBSD:
 Windows 10:
 -Image loads; Runs through updates.
 -SSH does not start
+
+Windows Server 2019:
+-Fully functional as long as commands to install/start SSH are input once the machine loads (see txt file in folder for details; the sshstarter script does not work since the machine reboots for update purposes and erases the changes made by the script)
+-Boots from a local copy of the iso, not a url
