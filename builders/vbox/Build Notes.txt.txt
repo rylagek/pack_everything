@@ -49,3 +49,7 @@ Arch:
 FreeBSD:
 -Image loads; install fails (can't find folder/file, so it doesn't boot)
 -SSH errors
+
+Windows 10:
+-Image loads; Runs through updates.
+-SSH does not start
