@@ -4,7 +4,7 @@ Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 Start-Service sshd
 
-***This command has not worked for me (still testing), but it enables ssh to be permanently on when the system starts.***
+***This command has not worked for me (still testing), but it enables ssh to be permanently on when the system starts (didn't work for me, but I didn't try running powershell as admin for it. Actively testing.***
 
 Set-Service -Name sshd -StartupType 'Automatic'
 
