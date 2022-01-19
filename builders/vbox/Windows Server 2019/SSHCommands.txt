@@ -1,0 +1,22 @@
+***Here are the powershell commands to get ssh to run. These three commands should cause the SSH connection errors to cease.***
+
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
+Start-Service sshd
+
+***This command has not worked for me (still testing), but it enables ssh to be permanently on when the system starts.***
+
+Set-Service -Name sshd -StartupType 'Automatic'
+
+***This is a powershell script to ensure that firewalls let SSH traffic through - unecessary for my VM, but necessary for my device that runs my VMs to ensure that SSH works***
+
+if (!(Get-NetFirewallRule -Name "OpenSSH-Server-In-TCP" -ErrorAction SilentlyContinue | Select-Object Name, Enabled)) {
+    Write-Output "Firewall Rule 'OpenSSH-Server-In-TCP' does not exist, creating it..."
+    New-NetFirewallRule -Name 'OpenSSH-Server-In-TCP' -DisplayName 'OpenSSH Server (sshd)' -Enabled True -Direction Inbound -Protocol TCP -Action Allow -LocalPort 22
+} else {
+    Write-Output "Firewall rule 'OpenSSH-Server-In-TCP' has been created and exists."
+}
+
+***More info available here:***
+
+https://docs.microsoft.com/en-us/windows-server/administration/openssh/openssh_install_firstuse
