@@ -10,18 +10,19 @@ variable "iso_url" {
 }
 
 source "virtualbox-iso" "vbox" {
-  disk_size         = 100000
+  communicator      = "winrm"
+  disk_size         = 61440
   cpus              = "2"
   memory            = "2048"
-  floppy_files      = ["autounattend.xml", "update-windows.ps1"]
+  floppy_files      = ["Autounattend.xml", "update-windows.ps1", "configure-winrm.ps1"]
+  headless          = false
   iso_checksum      = "sha256:${var.iso_checksum}"
   iso_url           = "${var.iso_url}"
-  shutdown_command  = "echo 'vbox' | sudo -S shutdown -P now"
-  ssh_password      = "vbox"
-  ssh_timeout       = "60m"
-  ssh_username      = "vbox"
+  shutdown_command  = "shutdown /s /t 5 /f /d p:4:1 /c \"Packer Shutdown\""
+  winrm_password    = "vbox"
+  winrm_timeout     = "6h"
+  winrm_username    = "vbox"
   guest_os_type     = "Windows10_64"
-  headless          = false
   vboxmanage        = [["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"], ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"]]
   virtualbox_version_file = ""
 }
