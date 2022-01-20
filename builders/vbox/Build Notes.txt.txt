@@ -58,5 +58,6 @@ Windows Server 2019:
 -Fully functional as long as commands to install/start SSH are input once the machine loads (see txt file in folder for details; the sshstarter script does not work since the machine reboots for update purposes and erases the changes made by the script)
 -Boots from a local copy of the iso, not a url
 --UPDATE 20 JAN 2022: Added .pkr.hcl file that uses winrm instead of ssh. No extra commands are necessary upon booting, unlike SSH.
+--sshstarter file not necessary unless you want to run a provisioner to install/enable OpenSSH and create a host firewall rule to allow SSH traffic
 --Super helpful github repository below - useful if you need to switch between bios/uefi or Windows Server 2019 Core/GUI versions (see link below). Default code for these templates contains vmware and virtual box code by default, so it works whether you use vbox (like I did) or vmware.
 --https://github.com/eaksel/packer-Win2019
