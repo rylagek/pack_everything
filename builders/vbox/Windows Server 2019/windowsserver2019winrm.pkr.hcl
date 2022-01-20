@@ -102,8 +102,4 @@ build {
     pause_before = "1m0s"
     scripts      = ["C:/Users/alang/OneDrive/Documents/windowsserver2k19/cleanup.ps1"]
   }
-
-  provisioner "powershell" {
-    scripts = ["C:/Users/alang/OneDrive/Documents/windowsserver2k19/sshstarter.ps1"]
-  }
 }
