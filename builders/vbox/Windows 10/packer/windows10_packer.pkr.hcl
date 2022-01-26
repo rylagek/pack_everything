@@ -1,12 +1,12 @@
 
 variable "iso_checksum" {
   type    = string
-  default = ""
+  default = "7f6538f0eb33c30f0a5cbbf2f39973d4c8dea0d64f69bd18e406012f17a8234f"
 }
 
 variable "iso_url" {
   type    = string
-  default = "C:/Your/File/Path/File.iso"
+  default = "./win10.iso"
 }
 
 source "virtualbox-iso" "vbox" {
@@ -31,7 +31,7 @@ build {
   sources = ["source.virtualbox-iso.vbox"]
 
   provisioner "powershell" {
-    scripts = ["enable-rdp.ps1", "disable-hibernate.ps1", "disable-autologin.ps1", "enable-uac.ps1", "no-expiration.ps1", "enable-ssh.ps1"]
+    scripts = ["enable-rdp.ps1", "disable-hibernate.ps1", "disable-autologin.ps1", "enable-uac.ps1", "no-expiration.ps1"]
   }
 
   provisioner "windows-restart" {
