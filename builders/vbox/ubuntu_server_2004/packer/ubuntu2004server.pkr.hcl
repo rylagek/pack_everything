@@ -42,6 +42,6 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'ubuntu' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    scripts         = ["scripts/vbox.sh", "scripts/minimize.sh"]
+    scripts         = ["scripts/setup_ubuntu2004.sh"]
   }
 }
