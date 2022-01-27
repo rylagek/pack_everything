@@ -32,7 +32,12 @@ source "virtualbox-iso" "vbox" {
   ssh_password      = "${var.ssh_password}"
   ssh_username      = "${var.ssh_username}"
   ssh_timeout       = "${var.ssh_timeout}"
-  floppy_files      = ["Autounattend.xml", "update-windows.ps1", "configure-winrm.ps1"]
+  floppy_files      = [
+                         "Autounattend.xml",
+                         "update-windows.ps1",
+                         "configure-winrm.ps1",
+                         "enable-ssh.ps1"
+                      ]
   headless          = false
   iso_checksum      = "sha256:${var.iso_checksum}"
   iso_url           = "${var.iso_url}"
