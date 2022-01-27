@@ -9,8 +9,17 @@ variable "iso_url" {
 }
 
 source "virtualbox-iso" "vbox" {
-  boot_command            = ["<enter><enter><f6><esc><wait> ", "autoinstall ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/", "<enter>"]
-  boot_wait               = "60s"
+  boot_command = [
+    "<esc><esc><esc>",
+    "<enter><wait>",
+    "/casper/vmlinuz ",
+    "root=/dev/sr0 ",
+    "initrd=/casper/initrd ",
+    "autoinstall ",
+    "ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
+    "<enter>"
+  ]
+  boot_wait               = "2s"
   guest_additions_mode    = "disable"
   guest_os_type           = "ubuntu-64"
   headless                = false
@@ -31,7 +40,7 @@ build {
   sources = ["source.virtualbox-iso.vbox"]
 
   provisioner "shell" {
-    execute_command = "echo 'vbox' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
+    execute_command = "echo 'ubuntu' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
     scripts         = ["scripts/vbox.sh", "scripts/minimize.sh"]
   }
 }
