@@ -6,8 +6,7 @@
   - SIFT (unable to load from URL on SANS website; likely boots fine but syntax errors prevent it from loading from a local file path)
   - FreeBSD (loads image, some kind of install fails and prevents it from booting properly)
 
-**********************************************************************************************
-
+---
 
 ### Kali Linux: 
 - Problem with SSH password (minimize.sh?)
@@ -17,8 +16,12 @@
 - No SSH connection here
 
 ### Ubuntu 20.04 Server: 
-- Fully functional; boots normally
-- 600s boot_wait is adjustable; failure to load SSH in the VM will result in packer SSH timeout
+- Functional and boots normally
+- Now uses cloud-init
+- Boot wait is tricky - needs to be low enough to send input before defaults are used
+  - On a 2019 Thinkpad running Manjaro, 2s was too low and 5 seconds is close to the high bound
+- (IN-PROGRESS) Still need to add scripts to configure environment post-install
+- Despite the `stop ssh` command, still require a large `ssh_timeout` and `ssh_handshake_attempts` so packer doesn't timeout while system is updating
 
 ### Rocky Linux: 
 - Fully functional; boots normally
