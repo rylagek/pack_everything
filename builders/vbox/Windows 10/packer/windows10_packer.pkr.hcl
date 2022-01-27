@@ -9,11 +9,29 @@ variable "iso_url" {
   default = "./win10.iso"
 }
 
+variable "ssh_username" {
+  type    = string
+  default = "vbox"
+}
+
+variable "ssh_password" {
+  type    = string
+  default = "packer"
+}
+
+variable "ssh_timeout"  {
+  type = string
+  default = "30m"
+}
+
 source "virtualbox-iso" "vbox" {
-  communicator      = "winrm"
+  communicator      = "ssh"
   disk_size         = 61440
   cpus              = "2"
   memory            = "2048"
+  ssh_password      = "${var.ssh_password}"
+  ssh_username      = "${var.ssh_username}"
+  ssh_timeout       = "${var.ssh_timeout}"
   floppy_files      = ["Autounattend.xml", "update-windows.ps1", "configure-winrm.ps1"]
   headless          = false
   iso_checksum      = "sha256:${var.iso_checksum}"
