@@ -21,7 +21,7 @@ variable "ssh_password" {
 
 variable "ssh_timeout"  {
   type = string
-  default = "30m"
+  default = "300m"
 }
 
 source "virtualbox-iso" "vbox" {
