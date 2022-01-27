@@ -19,7 +19,7 @@ source "virtualbox-iso" "vbox" {
     "ds=nocloud-net;s=http://{{ .HTTPIP }}:{{ .HTTPPort }}/",
     "<enter>"
   ]
-  boot_wait               = "2s"
+  boot_wait               = "5s"
   guest_additions_mode    = "disable"
   guest_os_type           = "ubuntu-64"
   headless                = false
@@ -28,7 +28,8 @@ source "virtualbox-iso" "vbox" {
   iso_url                 = "http://releases.ubuntu.com/20.04/ubuntu-20.04.3-live-server-amd64.iso"
   memory                  = 1024
   shutdown_command        = "echo 'ubuntu'|sudo -S shutdown -P now"
-  ssh_handshake_attempts  = "20"
+  ssh_handshake_attempts  = "100000"
+  ssh_timeout             = "30m"
   ssh_password            = "ubuntu"
   ssh_username            = "ubuntu"
   vboxmanage              = [["modifyvm", "{{ .Name }}", "--memory", "1024"], ["modifyvm", "{{ .Name }}", "--cpus", "1"]]
