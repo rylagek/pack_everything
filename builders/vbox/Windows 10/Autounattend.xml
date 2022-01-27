@@ -91,7 +91,7 @@
                 <SynchronousCommand wcm:action="add">
                     <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\enable-ssh.ps1</CommandLine>
                     <Description>Enable SSH</Description>
-                    <Order>2</Order>
+                    <Order>1</Order>
                     <RequiresUserInput>false</RequiresUserInput>
                 </SynchronousCommand>
             </FirstLogonCommands>
