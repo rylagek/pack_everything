@@ -34,7 +34,6 @@ source "virtualbox-iso" "vbox" {
   ssh_timeout       = "${var.ssh_timeout}"
   floppy_files      = [
                          "Autounattend.xml",
-                         "update-windows.ps1",
                          "configure-winrm.ps1",
                          "enable-ssh.ps1"
                       ]
@@ -54,7 +53,14 @@ build {
   sources = ["source.virtualbox-iso.vbox"]
 
   provisioner "powershell" {
-    scripts = ["enable-rdp.ps1", "disable-hibernate.ps1", "disable-autologin.ps1", "enable-uac.ps1", "no-expiration.ps1"]
+    scripts = [
+                 "enable-rdp.ps1",
+                 "disable-hibernate.ps1",
+                 "disable-autologin.ps1",
+                 "enable-uac.ps1",
+                 "no-expiration.ps1",
+                 "update-windows.ps1"
+              ]
   }
 
   provisioner "windows-restart" {
