@@ -13,15 +13,13 @@ fi
 # Cleans SSH keys.
 echo '> Cleaning SSH keys ...'
 rm -f /etc/ssh/ssh_host_*
-# Sets hostname to localhost.
-echo '> Setting hostname to localhost ...'
-cat /dev/null > /etc/hostname
-hostnamectl set-hostname localhost
-# Cleans apt-get.
-echo '> Cleaning apt-get ...'
-apt-get clean
+# Cleans apt.
+echo '> Cleaning apt ...'
+apt autoremove
 # Cleans the machine-id.
 echo '> Cleaning the machine-id ...'
 truncate -s 0 /etc/machine-id
 rm /var/lib/dbus/machine-id
 ln -s /etc/machine-id /var/lib/dbus/machine-id
+# Add desktop
+#apt install -y ubuntu-desktop
