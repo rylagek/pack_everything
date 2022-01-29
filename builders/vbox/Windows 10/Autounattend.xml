@@ -89,9 +89,15 @@
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\enable-ssh.ps1</CommandLine>
-                    <Description>Enable SSH</Description>
+                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\enable-admin.ps1</CommandLine>
+                    <Description>Enable Administrator Account</Description>
                     <Order>1</Order>
+                    <RequiresUserInput>false</RequiresUserInput>
+                </SynchronousCommand>
+                <SynchronousCommand wcm:action="add">
+                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\enable-winrm.ps1</CommandLine>
+                    <Description>Enable WinRM</Description>
+                    <Order>2</Order>
                     <RequiresUserInput>false</RequiresUserInput>
                 </SynchronousCommand>
             </FirstLogonCommands>
