@@ -6,7 +6,7 @@ $ifaceinfo = Get-NetConnectionProfile
 Set-NetConnectionProfile -InterfaceIndex $ifaceinfo.InterfaceIndex -NetworkCategory Private 
 
 # Set up WinRM and configure some things
-winrm quickconfig -q
+Enable-PSRemoting -Force
 winrm s "winrm/config" '@{MaxTimeoutms="1800000"}'
 winrm s "winrm/config/winrs" '@{MaxMemoryPerShellMB="2048"}'
 winrm s "winrm/config/service" '@{AllowUnencrypted="true"}'
