@@ -81,22 +81,22 @@
         <component name="Microsoft-Windows-Shell-Setup" processorArchitecture="amd64" publicKeyToken="31bf3856ad364e35" language="neutral" versionScope="nonSxS" xmlns:wcm="http://schemas.microsoft.com/WMIConfig/2002/State" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
             <AutoLogon>
                 <Password>
-                    <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
-                    <PlainText>false</PlainText>
+                    <Value>packer</Value>
+                    <PlainText>true</PlainText>
                 </Password>
                 <Username>vbox</Username>
                 <Enabled>true</Enabled>
             </AutoLogon>
             <FirstLogonCommands>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\configure-winrm.ps1</CommandLine>
-                    <Description>Update Windows, and when finished, run configure-winrm.ps1 to turn WinRM on so this par</Description>
+                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\enable-admin.ps1</CommandLine>
+                    <Description>Enable Administrator Account</Description>
                     <Order>1</Order>
                     <RequiresUserInput>false</RequiresUserInput>
                 </SynchronousCommand>
                 <SynchronousCommand wcm:action="add">
-                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\update-windows.ps1</CommandLine>
-                    <Description>Update Windows, and when finished, run configure-winrm.ps1 to turn WinRM on so this par</Description>
+                    <CommandLine>powershell -NoLogo -ExecutionPolicy RemoteSigned -File a:\enable-winrm.ps1</CommandLine>
+                    <Description>Enable WinRM</Description>
                     <Order>2</Order>
                     <RequiresUserInput>false</RequiresUserInput>
                 </SynchronousCommand>
@@ -109,8 +109,8 @@
                 <LocalAccounts>
                     <LocalAccount wcm:action="add">
                         <Password>
-                            <Value>dgBhAGcAcgBhAG4AdABQAGEAcwBzAHcAbwByAGQA</Value>
-                            <PlainText>false</PlainText>
+                            <Value>packer</Value>
+                            <PlainText>true</PlainText>
                         </Password>
                         <Description>vbox User</Description>
                         <DisplayName>vbox</DisplayName>
