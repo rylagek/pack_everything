@@ -9,7 +9,7 @@
 ---
 
 ### Kali Linux: 
-- Problem with SSH password (minimize.sh?)
+- Fully functional; boots normally
 
 ### Ubuntu 18.04 Desktop:
 - Fully functional; boots normally
