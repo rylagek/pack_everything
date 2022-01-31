@@ -11,9 +11,13 @@
 ### Kali Linux: 
 - Problem with SSH password (minimize.sh?)
 
+### Ubuntu 18.04 Desktop:
+- Fully functional; boots normally
+
 ### Ubuntu 20.04 Desktop: 
-- "Cancel install" takes you to Ubuntu desktop
-- No SSH connection here
+- Pivoted to attempting to install `ubuntu-desktop` package onto a working server build
+- Doesn't seem to work - build is successful, but the resultant VM just displays a black screen and can't be interacted with
+- TODO - once/if the above is resolved, break the installation of `ubuntu-desktop` into a chained builder that uses the output of the ubuntu\_server build
 
 ### Ubuntu 20.04 Server: 
 - Functional and boots normally

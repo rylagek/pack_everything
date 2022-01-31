@@ -9,7 +9,8 @@ variable "iso_url" {
 }
 
 source "virtualbox-iso" "vbox" {
-  boot_command            = ["<esc><wait>", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ", "locale=en_US ", "keymap=us ", "hostname=vbox ", "domain='' ", "<enter>"]
+  boot_command            = ["<esc><wait>", "<enter><wait><esc><enter>", "/casper/vmlinuz root=/dev/sr0 initrd=/casper/initrd auto url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ", "locale=en_US ", "keymap=us ", "hostname=vbox ", "domain='' ", "<enter>"]
+  boot_wait               = "5s"
   cpus                    = "2"
   guest_additions_mode    = "disable"
   guest_os_type           = "Ubuntu_64"
