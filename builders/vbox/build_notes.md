@@ -12,7 +12,7 @@
 - Problem with SSH password (minimize.sh?)
 
 ### Ubuntu 18.04 Desktop:
-- (IN-PROGRESS) attempting to use virtual box template found online but install doesn't complete, stalls on black screen after boot command is input and system reboots for some reason
+- Fully functional; boots normally
 
 ### Ubuntu 20.04 Desktop: 
 - Pivoted to attempting to install `ubuntu-desktop` package onto a working server build
