@@ -27,17 +27,16 @@ source "virtualbox-iso" "vbox" {
     "curl -X POST -u root:truenas 'http://localhost/api/v2.0/service/start' -H  'accept: */*' -H  'Content-Type: application/json' -d \"{\\\"service\\\":\\\"ssh\\\",\\\"service-control\\\":{\\\"ha_propagate\\\":true}}\"",
     "<enter><wait10>"
   ]
-  boot_wait               = "10s"
+  boot_wait               = "5s"
   cpus                    = "2"
   guest_additions_mode    = "disable"
   guest_os_type           = "FreeBSD_64"
-  http_directory          = "http"
   iso_checksum            = "sha256:${var.iso_checksum}"
   iso_url                 = "${var.iso_url}"
   memory                  = "2048"
   shutdown_command        = "shutdown -p now"
   ssh_password            = "truenas"
-  ssh_timeout             = "60m"
+  ssh_timeout             = "5m" # boot commands start ssh, so this should be instantaneous. fail fast if something is wrong.
   ssh_username            = "root"
   virtualbox_version_file = ""
   vm_name                 = "packer-truenas-12U7-amd64"
