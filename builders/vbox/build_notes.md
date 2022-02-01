@@ -30,8 +30,11 @@
 - Fully functional; boots normally
 
 ### TrueNAS: 
-- Boots normally, but needs to be configured via web browser
-- SSH waiting still occurs from packer --> SSH timeout could be adjusted to hours if SSH is not needed (this wil prevent machine from closing automatically once packer does not connect via SSH)
+- Fully functional; boots normally
+- WebUI can be accessed for further configuration. Networking config is platform dependent. Easiest for students is to import the vm and set networking to bridged
+- Alternative to WebUI is RESTful api. This can be used from the box itself or remotely via `http://[localhost | IP]/api/v2.0/`. The documentation can be accessed via `http://[localhost | IP]/api/docs/`
+  - If using `curl` you can authorize to the API using `-u root:truenas`
+- SSH creds are `root:truenas`
 
 ### Security Onion:
 - Loads an image
