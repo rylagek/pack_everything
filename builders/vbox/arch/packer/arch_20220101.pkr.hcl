@@ -9,27 +9,33 @@ variable "iso_url" {
 }
 
 source "virtualbox-iso" "vbox" {
-  boot_command            = ["<esc><wait>", "install <wait>", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ", "locale=en_US ", "keymap=us ", "hostname=Arch ", "domain='' ", "<enter>"]
+  boot_command = [
+    "<enter><wait1m>",
+    "curl -sfSLO http://{{ .HTTPIP }}:{{ .HTTPPort }}/install.sh<enter><wait>",
+    "curl -sfSLO http://{{ .HTTPIP }}:{{ .HTTPPort }}/bootloader.sh<enter><wait>",
+    "curl -sfSLO http://{{ .HTTPIP }}:{{ .HTTPPort }}/partition.sh<enter><wait>",
+    "curl -sfSLO http://{{ .HTTPIP }}:{{ .HTTPPort }}/packer.sh<enter><wait>",
+    "chmod +x *.sh<enter><wait>",
+    "./install.sh<enter>"
+  ]
+  boot_wait               = "10s"
   cpus                    = "2"
+  headless                = false
   guest_additions_mode    = "disable"
-  guest_os_type           = "Arch"
+  guest_os_type           = "ArchLinux_64"
   http_directory          = "http"
   iso_checksum            = "sha1:${var.iso_checksum}"
   iso_url                 = "${var.iso_url}"
   memory                  = "2048"
-  shutdown_command        = "echo 'packer' | sudo -S shutdown -P now"
-  ssh_password            = "vbox"
+  shutdown_command        = "sudo systemctl poweroff"
+  ssh_password            = "arch"
+  ssh_username            = "root"
   ssh_timeout             = "60m"
-  ssh_username            = "vbox"
-  vboxmanage              = [["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"], ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"]]
+  ssh_handshake_attempts  = "80000"
   virtualbox_version_file = ""
+  disk_size               = "8000"
 }
 
 build {
   sources = ["source.virtualbox-iso.vbox"]
-
-  provisioner "shell" {
-    execute_command = "echo 'vbox' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    scripts         = ["scripts/vbox.sh", "scripts/minimize.sh"]
-  }
 }
