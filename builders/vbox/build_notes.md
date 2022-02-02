@@ -50,7 +50,10 @@
 - Boots, but checks to see if WAN link is up
 
 ### Arch:
-- Boots normally, but SSH is disabled by default since Arch is minimalist. Currently working on a workaround: use a script with linux commands to enable SSH; increase boot_wait so that script has time to run before packer auto-removes the VM
+- Fully functional; boots normally
+- `ssh_handshake_attempts` is set to a stupidly large amount. I think the iso itself might have ssh, so packer attempts to connect to that and gets rejected, so for now I've set the number of attempts to a very large value.
+- Installs `base, linux, linux-firmware`
+- Can write some provisioners if there's some barebones configuration that would be useful
 
 ### FreeBSD:
 - Image loads; install fails (can't find folder/file, so it doesn't boot)
