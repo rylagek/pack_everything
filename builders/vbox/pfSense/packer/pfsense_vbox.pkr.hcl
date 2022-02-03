@@ -25,7 +25,7 @@ source "virtualbox-iso" "vbox" {
     "em0<enter><wait>",
     "<enter><wait>",
     "y<enter><wait1m>",
-    "14<enter><wait>y<enter><wait>",
+    "14<enter><wait>y<enter><wait>"
   ]
   boot_wait               = "1m"
   cpus                    = "2"
@@ -34,12 +34,12 @@ source "virtualbox-iso" "vbox" {
   iso_checksum            = "sha256:${var.iso_checksum}"
   iso_url                 = "${var.iso_url}"
   memory                  = "2048"
-  shutdown_command        = ""
-  communicator            = "none"
-  ssh_password            = "root"
+  shutdown_command        = "" 
+  ssh_password            = "pfsense"
   ssh_timeout             = "5m"
-  ssh_username            = "pfsense"
+  ssh_username            = "root"
   virtualbox_version_file = ""
+  vm_name                  = "packer-pfsense-2.5.2-amd64"
 }
 
 build {

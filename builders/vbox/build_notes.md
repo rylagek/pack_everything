@@ -47,9 +47,8 @@
 - Easy to download from SANS, but link is not copyable (checksum is present though) - recommend downloading the SIFT VM and using a local filepath to boot it up instead of the usual URL method (has not been successful to date, likely due to syntax errors)
 
 ### pfSense:
-- Build installs and enables `sshd`
-- However, despite enabling, packer is unable to connect to it
-- Right now, I've disabled the packer communicator since we don't have any provisioners, so it produces artifacts. Manually importing the generated VM verifies that sshd is enabled on boot and that the password provided to packer is able to ssh in, so not sure why packer can't connect. 
+- Fully functional; boots normally
+- Had some trouble finding a good shutdown command. Right now the VM is just forcefully shutdown, which might not be the best for pfSense.
 
 ### Arch:
 - Fully functional; boots normally
