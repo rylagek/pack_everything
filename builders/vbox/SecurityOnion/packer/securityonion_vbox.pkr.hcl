@@ -1,15 +1,15 @@
 variable "iso_checksum" {
   type    = string
-  default = "BAA8BEF574ECCB9ADC326D736A00C00AAF940FC6AD68CF491FF1F0AB6C5BAA64"
+  default = "cdcbee6b1fdfb4caf6c9f80ccadc161366ec337746e8394bf4454faa2fc11aa1"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://download.securityonion.net/file/securityonion/securityonion-2.3.91.iso"
+  default = "securityonion-2.3.100-20220131.iso"
 }
 
 source "virtualbox-iso" "vbox" {
-  boot_command            = ["<esc><wait>", "install <wait>", "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg ", "locale=en_US ", "keymap=us ", "hostname=kali ", "domain='' ", "<enter>"]
+  boot_command            = ["<esc><wait>", "vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\\x207\\x20x86_64 <wait>", "ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg nomodeset quiet", "<enter>"]
   cpus                    = "4"
   guest_additions_mode    = "disable"
   guest_os_type           = "Ubuntu_64"
