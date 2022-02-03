@@ -9,3 +9,6 @@ crash.log
 
 # For output builds
 **/output-*
+
+# For iso files
+*.iso
