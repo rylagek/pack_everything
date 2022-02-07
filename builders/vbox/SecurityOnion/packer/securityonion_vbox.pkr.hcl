@@ -31,6 +31,6 @@ build {
 
   provisioner "shell" {
     execute_command = "echo 'vbox' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    scripts         = ["scripts/vbox.sh", "scripts/minimize.sh"]
+    scripts = ["scripts/install.sh"]
   }
 }
