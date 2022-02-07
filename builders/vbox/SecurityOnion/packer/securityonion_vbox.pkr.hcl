@@ -7,7 +7,15 @@ variable "iso_url" {
   type    = string
   default = "securityonion-2.3.100-20220131.iso"
 }
+variable "ssh_username" {
+  type    = string
+  default = "packer"
+}
 
+variable "ssh_password" {
+  type    = string
+  default = "automation"
+}
 source "virtualbox-iso" "vbox" {
   boot_command         = ["<esc><wait>", "vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\\x207\\x20x86_64 <wait>", "ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg nomodeset quiet", "<enter>"]
   cpus                 = "4"
@@ -33,7 +41,11 @@ build {
   sources = ["source.virtualbox-iso.vbox"]
 
   provisioner "shell" {
-    execute_command = "echo 'vbox' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    scripts         = ["scripts/install.sh"]
+    execute_command = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
+    scripts         = [		"scripts/install.sh",	]
+  }
+  provisioner "shell" {
+    execute_command = "expect '{{ .Path }}'"
+    scripts         = [		"scripts/install_so.exp",	]
   }
 }
