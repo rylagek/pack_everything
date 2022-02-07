@@ -19,9 +19,9 @@ source "virtualbox-iso" "vbox" {
   memory                  = "13000"
   disk_size               = "150000"
   shutdown_command        = "echo 'packer' | sudo -S shutdown -P now"
-  ssh_password            = "vbox"
+  ssh_password            = "automation"
   ssh_timeout             = "60m"
-  ssh_username            = "vbox"
+  ssh_username            = "packer"
   vboxmanage              = [["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"], ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"]]
   virtualbox_version_file = ""
 }
