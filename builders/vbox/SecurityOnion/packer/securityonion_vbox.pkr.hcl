@@ -24,8 +24,7 @@ source "virtualbox-iso" "vbox" {
   ssh_username         = "packer"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
-    ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
-    ["modifyvm", "{{ .Name }}", "--nic2", "nat"]
+    ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"]
   ]
   virtualbox_version_file = ""
 }
