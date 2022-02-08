@@ -1,15 +1,33 @@
 variable "iso_checksum" {
   type    = string
-  default = "c81a911f9d5fc7404877dd679771d776e1447cc38b31e1c07042d2620e49d4ac"
+  default = "f78d4e5f53605592863852b39fa31a12f15893dc48cacecd875f2da72fa67ae5"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://download.freebsd.org/ftp/releases/amd64/amd64/ISO-IMAGES/13.0/FreeBSD-13.0-RELEASE-amd64-bootonly.iso"
+  default = "https://download.freebsd.org/ftp/releases/amd64/amd64/ISO-IMAGES/13.0/FreeBSD-13.0-RELEASE-amd64-disc1.iso"
 }
 
+variable "rc_conf_file" {
+  type    = string
+  default = ""
+}
+
+
 source "virtualbox-iso" "vbox" {
-  boot_command            = ["<esc><wait>", "boot -s<enter>", "<wait15s>", "/bin/sh<enter><wait>", "mdmfs -s 100m md /tmp<enter><wait>", "dhclient -l /tmp/dhclient.lease.vtnet0 vtnet0<enter><wait5>", "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/installerconfig<enter><wait5>", "bsdinstall script /tmp/installerconfig<enter>"]
+  boot_command = [
+        "<esc><wait>",
+        "boot -s<wait>",
+        "<enter><wait>",
+        "<wait10><wait10>",
+        "/bin/sh<enter><wait>",
+        "mdmfs -s 100m md1 /tmp<enter><wait>",
+        "mdmfs -s 100m md2 /mnt<enter><wait>",
+        "dhclient -p /tmp/dhclient.em0.pid -l /tmp/dhclient.lease.em0 em0<enter><wait30s>",
+        "fetch -o /tmp/installerconfig http://{{ .HTTPIP }}:{{ .HTTPPort }}/installerconfig<enter>",
+        "<wait10>",
+        "bsdinstall script /tmp/installerconfig<enter><wait>"
+  ]
   cpus                    = "2"
   guest_additions_mode    = "disable"
   guest_os_type           = "FreeBSD_64"
@@ -17,25 +35,14 @@ source "virtualbox-iso" "vbox" {
   iso_checksum            = "sha256:${var.iso_checksum}"
   iso_url                 = "${var.iso_url}"
   memory                  = "2048"
-  shutdown_command        = "echo 'packer' | sudo -S shutdown -P now"
-  ssh_password            = "vbox"
+  shutdown_command        = "poweroff"
+  ssh_password            = "freebsd"
   ssh_timeout             = "60m"
-  ssh_username            = "vbox"
-  vboxmanage              = [["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"], ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"]]
+  ssh_username            = "root"
   virtualbox_version_file = ""
+  vm_name                 = "packer-freebsd-13.0-amd64"
 }
 
 build {
   sources = ["source.virtualbox-iso.vbox"]
-
-  provisioner "shell" {
-    execute_command = "echo 'vbox' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    scripts         = [
-                        "scripts/vbox.sh",
-                        "scripts/init.sh",
-                        "scripts/sshd.sh",
-                        "scripts/cleanup.sh",
-                        "scripts/minimize.sh"
-                      ]
-  }
 }
