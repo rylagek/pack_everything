@@ -57,8 +57,8 @@
 - Can write some provisioners if there's some barebones configuration that would be useful
 
 ### FreeBSD:
-- Image loads; install fails (can't find folder/file, so it doesn't boot)
-- SSH errors
+- Fully functional; boots normally
+- File system is ZFS. Essentially followed the installation instructions from the `bsdinstall` man page
 
 ### Windows 10:
 - Image loads; starts winrm (is listening); starts updates.
