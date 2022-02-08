@@ -26,13 +26,14 @@ source "virtualbox-iso" "vbox" {
   iso_url              = "${var.iso_url}"
   memory               = "13000"
   disk_size            = "150000"
-  shutdown_command     = "echo 'packer' | sudo -S shutdown -P now"
+  shutdown_command     = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
   ssh_password         = "automation"
   ssh_timeout          = "60m"
   ssh_username         = "packer"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
-    ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"]
+    ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
+    ["modifyvm", "{{ .Name }}", "--nic2", "null"],
   ]
   virtualbox_version_file = ""
 }
@@ -40,12 +41,13 @@ source "virtualbox-iso" "vbox" {
 build {
   sources = ["source.virtualbox-iso.vbox"]
 
-  provisioner "shell" {
-    execute_command = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    scripts         = [		"scripts/install.sh",	]
+  provisioner "file" {
+    source      = "scripts/ucwt-iso"
+    destination = "/home/${var.ssh_username}/SecurityOnion/setup/automation/ucwt-iso"
   }
   provisioner "shell" {
-    execute_command = "expect '{{ .Path }}'"
-    scripts         = [		"scripts/install_so.exp",	]
+    execute_command = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
+    scripts         = ["scripts/install.sh", ]
+    pause_after     = "30s"
   }
 }
