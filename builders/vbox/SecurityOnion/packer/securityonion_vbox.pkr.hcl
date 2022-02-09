@@ -48,6 +48,6 @@ build {
   provisioner "shell" {
     execute_command = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
     scripts         = ["scripts/install.sh", ]
-    pause_after     = "30s"
+    pause_after     = "10s"
   }
 }
