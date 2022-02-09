@@ -3,9 +3,12 @@ variable "iso_checksum" {
   default = "cdcbee6b1fdfb4caf6c9f80ccadc161366ec337746e8394bf4454faa2fc11aa1"
 }
 
-variable "iso_url" {
-  type    = string
-  default = "securityonion-2.3.100-20220131.iso"
+variable "iso_urls" {
+  type = list(string)
+  default = [
+    "securityonion-2.3.100-20220131.iso",
+    "https://download.securityonion.net/file/securityonion/securityonion-2.3.100-20220131.iso"
+  ]
 }
 variable "ssh_username" {
   type    = string
@@ -23,7 +26,7 @@ source "virtualbox-iso" "vbox" {
   guest_os_type        = "Ubuntu_64"
   http_directory       = "http"
   iso_checksum         = "sha256:${var.iso_checksum}"
-  iso_url              = "${var.iso_url}"
+  iso_urls             = "${var.iso_urls}"
   memory               = "13000"
   disk_size            = "150000"
   shutdown_command     = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
