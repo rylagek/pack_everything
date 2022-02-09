@@ -46,8 +46,9 @@ build {
     destination = "/home/${var.ssh_username}/SecurityOnion/setup/automation/ucwt-iso"
   }
   provisioner "shell" {
-    execute_command = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
-    scripts         = ["scripts/install.sh", ]
-    pause_after     = "10s"
+    execute_command   = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
+    scripts           = ["scripts/install.sh", ]
+    expect_disconnect = true
+    pause_after       = "10s"
   }
 }
