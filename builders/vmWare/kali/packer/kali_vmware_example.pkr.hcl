@@ -23,6 +23,7 @@ source "vmware-iso" "vmware" {
   ssh_password         = "kali"
   ssh_timeout          = "60m"
   ssh_username         = "kali"
+  vm_name              = "packer-kali-20214a-amd64"
   vmx_data_post = {
     "ide0:0.clientDevice"   = "TRUE"
     "ide0:0.deviceType"     = "cdrom-raw"
