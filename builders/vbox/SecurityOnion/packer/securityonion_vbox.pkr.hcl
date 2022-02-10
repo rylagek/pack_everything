@@ -19,7 +19,7 @@ variable "ssh_password" {
   type    = string
   default = "automation"
 }
-source "virtualbox-iso" "so-step-01" {
+source "virtualbox-iso" "base" {
   boot_command         = ["<esc><wait>", "vmlinuz initrd=initrd.img inst.stage2=hd:LABEL=CentOS\\x207\\x20x86_64 <wait>", "ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks.cfg nomodeset quiet", "<enter>"]
   cpus                 = "4"
   guest_additions_mode = "disable"
@@ -33,7 +33,7 @@ source "virtualbox-iso" "so-step-01" {
   ssh_password         = "automation"
   ssh_timeout          = "60m"
   ssh_username         = "packer"
-  vm_name              = "so-step-01"
+  vm_name              = "so-base"
   vboxmanage = [
     ["modifyvm", "{{ .Name }}", "--clipboard-mode", "bidirectional"],
     ["modifyvm", "{{ .Name }}", "--draganddrop", "bidirectional"],
@@ -42,8 +42,22 @@ source "virtualbox-iso" "so-step-01" {
   virtualbox_version_file = ""
 }
 
-source "virtualbox-ovf" "so-step-02" {
-  source_path      = "output-so-step-01/so-step-01.ovf"
+source "virtualbox-ovf" "eval" {
+  source_path      = "output-base/so-base.ovf"
+  ssh_username     = "${var.ssh_username}"
+  ssh_password     = "${var.ssh_password}"
+  shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
+}
+
+source "virtualbox-ovf" "standalone" {
+  source_path      = "output-base/so-base.ovf"
+  ssh_username     = "${var.ssh_username}"
+  ssh_password     = "${var.ssh_password}"
+  shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
+}
+
+source "virtualbox-ovf" "mgr-sch" {
+  source_path      = "output-base/so-base.ovf"
   ssh_username     = "${var.ssh_username}"
   ssh_password     = "${var.ssh_password}"
   shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
@@ -52,13 +66,13 @@ source "virtualbox-ovf" "so-step-02" {
 # Build the base image
 build {
   name    = "security-onion-base"
-  sources = ["source.virtualbox-iso.so-step-01"]
+  sources = ["source.virtualbox-iso.base"]
 }
 
 #Build an image of an eval install
 build {
-  name = "security-onion-eval"
-  source "virtualbox-ovf.so-step-02" {
+  name = "so-eval"
+  source "virtualbox-ovf.eval" {
     vm_name = "so-eval"
   }
   provisioner "file" {
@@ -76,11 +90,31 @@ build {
 #Build an image of a standalone install
 build {
   name = "security-onion-standalone"
-  source "virtualbox-ovf.so-step-02" {
+  source "virtualbox-ovf.standalone" {
+    name = "so-standalone"
     vm_name = "so-standalone"
   }
   provisioner "file" {
     source      = "scripts/ucwt-standalone-iso"
+    destination = "/home/${var.ssh_username}/SecurityOnion/setup/automation/ucwt-iso"
+  }
+  provisioner "shell" {
+    execute_command   = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
+    scripts           = ["scripts/install.sh", ]
+    expect_disconnect = true
+    pause_after       = "10s"
+  }
+}
+
+#Build an image of a distributed manager search install
+build {
+  name = "security-onion-mgr-sch"
+  source "virtualbox-ovf.mgr-sch" {
+    name = "so-mgr-sch"
+    vm_name = "so-mgr-sch"
+  }
+  provisioner "file" {
+    source      = "scripts/ucwt-mgr-sch-iso"
     destination = "/home/${var.ssh_username}/SecurityOnion/setup/automation/ucwt-iso"
   }
   provisioner "shell" {
