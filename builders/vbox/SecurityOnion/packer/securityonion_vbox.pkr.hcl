@@ -63,6 +63,13 @@ source "virtualbox-ovf" "mgr-sch" {
   shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
 }
 
+source "virtualbox-ovf" "sensor" {
+  source_path      = "output-base/so-base.ovf"
+  ssh_username     = "${var.ssh_username}"
+  ssh_password     = "${var.ssh_password}"
+  shutdown_command = "echo '${var.ssh_password}' | sudo -S shutdown -P now"
+}
+
 # Build the base image
 build {
   name    = "security-onion-base"
@@ -115,6 +122,24 @@ build {
   }
   provisioner "file" {
     source      = "scripts/ucwt-mgr-sch-iso"
+    destination = "/home/${var.ssh_username}/SecurityOnion/setup/automation/ucwt-iso"
+  }
+  provisioner "shell" {
+    execute_command   = "echo '{$var.ssh_password}' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
+    scripts           = ["scripts/install.sh", ]
+    expect_disconnect = true
+    pause_after       = "10s"
+  }
+}
+#Build an image of a distributed sensor install
+build {
+  name = "security-onion-sensor"
+  source "virtualbox-ovf.sensor" {
+    name = "sensor"
+    vm_name = "sensor"
+  }
+  provisioner "file" {
+    source      = "scripts/ucwt-sensor-iso"
     destination = "/home/${var.ssh_username}/SecurityOnion/setup/automation/ucwt-iso"
   }
   provisioner "shell" {
