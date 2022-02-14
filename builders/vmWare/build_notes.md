@@ -13,7 +13,7 @@
 - The iso build is done using the `build.sh` script.
   - To run a standard build with logging do `./build.sh -v`
   - To run a build of a pre-configured kali light (e.g. 'light') do `./build.sh --variant [variant_name] --verbose`. You can see the available variants in the `kali-config` directory. You can also create a custom variant to build in this directory.
-  - The iso build will take quite a while. If you are running multiple builds in succession, it's recommended to cache the downloads that the tooling makes. [Squid](http://www.squid-cache.org/)
+  - The iso build will take quite a while. If you are running multiple builds in succession, it's recommended to cache the downloads that the tooling makes. [Squid](http://www.squid-cache.org/) is one way to achieve this.
 
    ```
     # Getting squid
