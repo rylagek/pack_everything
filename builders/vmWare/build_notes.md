@@ -14,7 +14,8 @@
   - To run a standard build with logging do `./build.sh -v`
   - To run a build of a pre-configured kali light (e.g. 'light') do `./build.sh --variant [variant_name] --verbose`. You can see the available variants in the `kali-config` directory. You can also create a custom variant to build in this directory.
   - The iso build will take quite a while. If you are running multiple builds in succession, it's recommended to cache the downloads that the tooling makes. [Squid](http://www.squid-cache.org/)
-  
+
+   ```
     # Getting squid
     apt-get install squid
     # squid.conf is included in the live-build-config directory
@@ -24,7 +25,8 @@
     export http_proxy=http://localhost:3128/
     ./build.sh --verbose --variant custom -- \
         --apt-http-proxy=${http_proxy}
-  
+    ```  
+
   - Kali recommends building the iso from within a kali environment. In my case, I spun up a kali vm and worked from inside that, and used the shared folder feature of VirtualBox to transfer files between the VM and the host I was running builds from.
 
 ### Ubuntu 20.04 Server: 
