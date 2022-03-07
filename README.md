@@ -71,3 +71,13 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 ## Helpful VMware Documentation:
 [GuestOsDescriptor](https://developer.vmware.com/apis/358/vsphere/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html)
 [VMware-Tools](https://docs.vmware.com/en/VMware-Tools/11.3.0/com.vmware.vsphere.vmwaretools.doc/GUID-C48E1F14-240D-4DD1-8D4C-25B6EBE4BB0F.html)
+
+## Notes
+How to run: Navigate to proper directory that contains file "packer"
+run the command: packer build packer and it should build the vm in that folder assumning there are .pkr.hcl files in the directory
+
+## Questions:
+1. How to run .pkr.hcl on Windows and Linux?
+2. Where can I find Windows examples or documentation in vbox hcl?
+3. Is there documentation anywhere for why certain configurations were made?
+4. Can we copy Packer resources into this repo from Vater?
