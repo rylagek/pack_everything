@@ -1,11 +1,11 @@
 variable "iso_checksum" {
   type    = string
-  default = "5fdebc435ded46ae99136ca875afc6f05bde217be7dd018e1841924f71db46b5"
+  default = "f92f7dca5bb6690e1af0052687ead49376281c7b64fbe4179cc44025965b7d1c"
 }
 
 variable "iso_url" {
   type    = string
-  default = "https://releases.ubuntu.com/20.04.3/ubuntu-20.04.3-desktop-amd64.iso"
+  default = "https://releases.ubuntu.com/20.04/ubuntu-20.04.4-desktop-amd64.iso"
 }
 
 source "virtualbox-iso" "vbox" {
@@ -29,8 +29,8 @@ source "virtualbox-iso" "vbox" {
 build {
   sources = ["source.virtualbox-iso.vbox"]
 
-  provisioner "shell" {
+  /*provisioner "shell" {
     execute_command = "echo 'vbox' | {{ .Vars }} sudo -S bash -euxo pipefail '{{ .Path }}'"
     scripts         = ["scripts/vbox.sh", "scripts/minimize.sh"]
-  }
+  }*/
 }
