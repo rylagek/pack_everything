@@ -6,7 +6,7 @@ source "virtualbox-iso" "vbox" {
   guest_os_type        = "Ubuntu_64"
   http_directory       = "http"
   iso_checksum         = "sha256:f730be589aa1ba923ebe6eca573fa66d09ba14c4c104da2c329df652d42aff11"
-  iso_url              = "http://releases.ubuntu.com/bionic/ubuntu-18.04.6-desktop-amd64.iso"
+  iso_url              = "https://releases.ubuntu.com/18.04/ubuntu-18.04.6-desktop-amd64.iso"
   shutdown_command     = "echo 'ubuntu' | sudo -S shutdown -P now"
   ssh_password         = "ubuntu"
   ssh_port             = 22
