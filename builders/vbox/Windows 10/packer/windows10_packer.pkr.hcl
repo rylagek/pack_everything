@@ -1,12 +1,13 @@
 
 variable "iso_checksum" {
   type    = string
-  default = "7f6538f0eb33c30f0a5cbbf2f39973d4c8dea0d64f69bd18e406012f17a8234f"
+  #default = "7f6538f0eb33c30f0a5cbbf2f39973d4c8dea0d64f69bd18e406012f17a8234f" #checksum doesn't match microsoft website iso
+  default = "6D3184C31DB662762D9F7174F2F3AD1FCA50B145F6B6815DEBF303216A616A12"
 }
 
 variable "iso_url" {
   type    = string
-  default = "./win10.iso"
+  default = "./Windows.iso" # Must have local copy in directory
 }
 
 variable "winrm_username" {
