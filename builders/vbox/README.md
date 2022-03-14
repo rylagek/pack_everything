@@ -35,3 +35,14 @@ checksum value. You may even download an ISO to reference locally.
 the message "Builds finished but no artifacts were created" This is because there
 is already an artifact made for that operating system and you must use a flag to
 delete it  prior to building (ex: packer build -force packer)
+
+Known Issues
+
+Ubuntu 20.04 desktop: SSH fails to connect
+
+Ubuntu 20.04 server: error during setup (asks to press enter to enter shell)
+  subiquity/Install/install/configure_apt error
+  
+Arch Linux: install.sh - bad interpreter
+
+FreeBSD: installation error

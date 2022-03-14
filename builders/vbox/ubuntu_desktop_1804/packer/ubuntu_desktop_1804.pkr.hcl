@@ -8,10 +8,11 @@ source "virtualbox-iso" "vbox" {
   iso_checksum         = "sha256:f730be589aa1ba923ebe6eca573fa66d09ba14c4c104da2c329df652d42aff11"
   iso_url              = "https://releases.ubuntu.com/18.04/ubuntu-18.04.6-desktop-amd64.iso"
   shutdown_command     = "echo 'ubuntu' | sudo -S shutdown -P now"
-  ssh_password         = "ubuntu"
+  ssh_handshake_attempts  = "100000"
+  ssh_timeout             = "30m"
+  ssh_password            = "ubuntu"
+  ssh_username            = "ubuntu"
   ssh_port             = 22
-  ssh_username         = "ubuntu"
-  ssh_wait_timeout     = "40m"
   vboxmanage           = [["modifyvm", "{{ .Name }}", "--memory", "1024"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{.Name}}", "--vram", "64"]]
   vm_name              = "packer-ubuntu-18.04-amd64"
 }

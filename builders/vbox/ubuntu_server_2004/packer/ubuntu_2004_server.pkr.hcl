@@ -32,6 +32,7 @@ source "virtualbox-iso" "vbox" {
   ssh_timeout             = "30m"
   ssh_password            = "ubuntu"
   ssh_username            = "ubuntu"
+  ssh_port                = 22
   vboxmanage              = [["modifyvm", "{{ .Name }}", "--memory", "1024"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{.Name}}", "--vram", "64"]]
   virtualbox_version_file = ".vbox_version"
   vm_name                 = "packer-ubuntu-20.04-amd64"
