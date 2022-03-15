@@ -24,14 +24,15 @@ source "virtualbox-iso" "vbox" {
   guest_os_type           = "ubuntu-64"
   headless                = false
   http_directory          = "http"
-  iso_checksum            = "sha256:f8e3086f3cea0fb3fefb29937ab5ed9d19e767079633960ccb50e76153effc98"
-  iso_url                 = "http://releases.ubuntu.com/20.04/ubuntu-20.04.3-live-server-amd64.iso"
+  iso_checksum            = "sha256:28ccdb56450e643bad03bb7bcf7507ce3d8d90e8bf09e38f6bd9ac298a98eaad"
+  iso_url                 = "https://releases.ubuntu.com/20.04/ubuntu-20.04.4-live-server-amd64.iso"
   memory                  = 1024
   shutdown_command        = "echo 'ubuntu'|sudo -S shutdown -P now"
   ssh_handshake_attempts  = "100000"
   ssh_timeout             = "30m"
   ssh_password            = "ubuntu"
   ssh_username            = "ubuntu"
+  ssh_port                = 22
   vboxmanage              = [["modifyvm", "{{ .Name }}", "--memory", "1024"], ["modifyvm", "{{ .Name }}", "--cpus", "1"], ["modifyvm", "{{.Name}}", "--vram", "64"]]
   virtualbox_version_file = ".vbox_version"
   vm_name                 = "packer-ubuntu-20.04-amd64"
