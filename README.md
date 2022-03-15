@@ -1,5 +1,5 @@
 # pack_everything
-Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](https://medium.com/swlh/chaining-machine-image-builds-with-packer-b6fd99e35049) for [Vagrant](https://www.packer.io/docs/builders/vagrant), [VirtualBox](https://www.packer.io/docs/builders/virtualbox/iso), [VMWare](https://www.packer.io/docs/builders/vmware/iso), and [vSphere](https://www.packer.io/docs/builders/vsphere/vsphere-iso)
+Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](https://medium.com/swlh/chaining-machine-image-builds-with-packer-b6fd99e35049) for [Proxmox](https://www.packer.io/plugins/builders/proxmox/iso), [Vagrant](https://www.packer.io/docs/builders/vagrant), [VirtualBox](https://www.packer.io/docs/builders/virtualbox/iso), [VMWare](https://www.packer.io/docs/builders/vmware/iso), and [vSphere](https://www.packer.io/docs/builders/vsphere/vsphere-iso)
 
 ## OS List
 **\*Nix in Order of Priority**
