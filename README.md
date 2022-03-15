@@ -78,6 +78,4 @@ run the command: `packer build packer` and it should build the vm in that folder
 
 ## Questions:
 1. How to run `.pkr.hcl` on Windows and Linux?
-2. Where can I find Windows examples or documentation in vbox hcl?
-3. Is there documentation anywhere for why certain configurations were made?
-4. Can we copy Packer resources into this repo from Vater?
+  Packer commands are the same across operating systems - running `packer` without additional arguments will list all possible commands
