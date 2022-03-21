@@ -4,11 +4,11 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 ## OS List
 **\*Nix in Order of Priority**
 
-| 1) Ubuntu 20.04 Desktop | 13) Raspberry Pi OS |
+| 1) Ubuntu 20.04 Desktop | 14) TAILS |
 |:-|:-|
-| 2) Ubuntu 20.04 Server | 14) TAILS |
-| 3) Rocky Linux | 15) Ubuntu 16.04 Desktop |
-| 4) Kali Linux | 16) Ubuntu 16.04 Server |
+| 2) Ubuntu 20.04 Server | 15a) Ubuntu 16.04 Server |
+| 3) Rocky Linux | 15b) Ubuntu 16.04 Desktop |
+| 4) Kali Linux | 16) Project 9 |
 | 5) TrueNAS | 17) REMNUX |
 | 6) Security Onion | 18) Qubes OS |
 | 7) SIFT | 19) OpenBSD |
@@ -17,6 +17,7 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 | 10) FreeBSD | 22) Gentoo |
 | 11) busybox | 23) Pentoo |
 | 12) Oracle Solaris | 24) Debian 11 |
+| 13) Raspberry Pi OS | 24) Debian 11 |
 
 **Windows in Order of Priority**
 | 1) Windows 10 | 4) Windows 7 |
