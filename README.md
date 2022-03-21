@@ -17,7 +17,7 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 | 10) FreeBSD | 22) Gentoo |
 | 11) busybox | 23) Pentoo |
 | 12) Oracle Solaris | 24) Debian 11 |
-| 13) Raspberry Pi OS | 24) Debian 11 |
+| 13) Raspberry Pi OS | 25) Slackware |
 
 **Windows in Order of Priority**
 | 1) Windows 10 | 4) Windows 7 |
