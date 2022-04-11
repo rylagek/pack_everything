@@ -23,7 +23,8 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 | 1) Windows 10 | 4) Windows 7 |
 |:-|:-|
 | 2) Windows Server 2k19 | 5) Windows XP |
-| 3) Windows Vista | 6) Windows Server 2k12 |
+| 3) Windows Server 2k16 | 6) Windows Server 2k12 |
+| 7) Windows Vista ||
 
 ## File Structure
 #### `builders` holds example source and builder `pkr.hcl` blocks for each build type
