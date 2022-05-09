@@ -20,16 +20,17 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
 | 13) Raspberry Pi OS | 25) Slackware |
 
 **Windows in Order of Priority**
-| 1) Windows 10 | 4) Windows 7 |
+| 1) Windows 10 | 5) Windows 7 |
 |:-|:-|
-| 2) Windows Server 2k19 | 5) Windows XP |
-| 3) Windows Server 2k16 | 6) Windows Server 2k12 |
-| 7) Windows Vista ||
+| 2) Windows Server 2k19 | 6) Windows XP |
+| 3) Windows Server 2k16 | 7) Windows Server 2k12 |
+| 4) Windows Vista ||
 
 ## File Structure
 #### `builders` holds example source and builder `pkr.hcl` blocks for each build type
 
 #### `nix` and `windows` each hold the packer files required for successful builds
+- please contribute in these folders, not in `builders`
 ```
 ├───builders
 │   ├───vagrant
@@ -70,14 +71,16 @@ Generic [Packer](https://www.packer.io/docs) Templates with [chained builders](h
     └───Windows XP
 ```
 
-## Helpful VMware Documentation:
-[GuestOsDescriptor](https://developer.vmware.com/apis/358/vsphere/doc/vim.vm.GuestOsDescriptor.GuestOsIdentifier.html)
-[VMware-Tools](https://docs.vmware.com/en/VMware-Tools/11.3.0/com.vmware.vsphere.vmwaretools.doc/GUID-C48E1F14-240D-4DD1-8D4C-25B6EBE4BB0F.html)
+## Getting started
+1) Clone this repo: `git clone https://github.com/rylagek/pack_everything`
+2) [Install](https://www.packer.io/docs/install) `packer` 
+3) Navigate to your desired OS and virtualization environment directory that contains file "packer" (ex `~/nix/Arch/Proxmox` or `~/Windows/10/VirtualBox/`)
+4) Run the command: `packer build packer` and it should build the vm with your selected provider assumming there are `.pkr.hcl` files in the directory and the provider is configured
 
-## Notes
-How to run: Navigate to proper directory that contains file "packer"
-run the command: `packer build packer` and it should build the vm in that folder assumning there are `.pkr.hcl` files in the directory
-
-## Questions:
+## FAQ:
 1. How to run `.pkr.hcl` on Windows and Linux?
   Packer commands are the same across operating systems - running `packer` without additional arguments will list all possible commands
+3. How to see the development status for virtualization environments or operating systems?
+  Check out the build notes and checklists in our [Wiki](https://github.com/rylagek/pack_everything/wiki)
+5. How to request an operating system to be added to the build list?
+  [Open an issue](https://github.com/rylagek/pack_everything/issues/new/choose) to request development on the desired OS
