@@ -12,3 +12,6 @@ crash.log
 
 # For iso files
 *.iso
+
+# secret vars
+secrets.pkrvars.hcl
